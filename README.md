@@ -3,3 +3,4 @@
 # UC#1 Infrastructure setup
 # UC#1 Create endpoin
 # UC#1 Create endpoint - done
+# UC#1 Create filter function by name
