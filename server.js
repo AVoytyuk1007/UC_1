@@ -9,7 +9,6 @@ app.get('/api/data', (req, res) => {
 // Make an API request
 axios.get('https://restcountries.com/v3.1/all')
     .then(response => {
-		//console.log(response.data);
       const responseData = response.data;
       
       // Parse the response data as JSON
