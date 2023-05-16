@@ -1,0 +1,18 @@
+{
+  "name": "av_api_case",
+  "version": "1.0.0",
+  "description": "test description here",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "AVoytyuk1007"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
