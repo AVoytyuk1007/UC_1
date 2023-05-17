@@ -3,6 +3,7 @@ const axios = require('axios');
 
 const { filterCNameData } = require('./filter_by_cName'); // Importing the filter function from a separate file
 const { filterCPopulationData } = require('./filter_by_cPopulation'); // Importing the filter function from a separate file
+const { sortCNameData } = require('./sort_by_cName'); // Importing the sorting function from a separate file
 
 const app = express();
 const port = 3000;
@@ -15,8 +16,7 @@ app.get('/api/data', async (req, res) => {
     // Fetch data from the public API
     const response = await axios.get('https://restcountries.com/v3.1/all');
 
-    //let filteredData = JSON.parse(JSON.stringify(response.data)); // Initialize filteredData with the original response
-	let filteredData = response.data;
+    let filteredData = response.data;// Initialize filteredData with the original response
 
    
     // Check if FCName parameter is present and call the filter_by_cName function if necessary
@@ -24,9 +24,14 @@ app.get('/api/data', async (req, res) => {
        filteredData = filterCNameData(filteredData, FCName);
     }
 	 
-	 // Check if CPopulation parameter is present and call the filter_by_cName function if necessary
+	 // Check if CPopulation parameter is present and call the filter_by_cPopulation function if necessary
     if (CPopulation) {
        filteredData = filterCPopulationData(filteredData, CPopulation);
+    }
+	
+	 // Check if SCName parameter is present and call the sort_by_cName function if necessary
+    if (SCName) {
+       filteredData = sortCNameData(filteredData, SCName);
     }
 
     res.json(filteredData);
