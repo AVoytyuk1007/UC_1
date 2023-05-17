@@ -1,35 +1,35 @@
 const express = require('express');
 const axios = require('axios');
+const { filterCNameData } = require('./filter_by_cName'); // Importing the filter function from a separate file
+
 const app = express();
-const port = 3000; // Choose the desired port number
+const port = 3000;
 
-app.get('/api/data', (req, res) => {
-  const { FCName, CPopulation, SCName, Pagination } = req.query;  
-  if (!FCName && !CPopulation && !SCName && !Pagination)  {
-// Make an API request
-axios.get('https://restcountries.com/v3.1/all')
-    .then(response => {
-      const responseData = response.data;
-      
-      // Parse the response data as JSON
-      const parsedData = JSON.parse(JSON.stringify(responseData));
+// Endpoint that accepts four parameters
+app.get('/api/data', async (req, res) => {
+  const { FCName, CPopulation, SCName, Pagination } = req.query;
 
-      // You can now work with the parsed data as a JavaScript object or variable
-      console.log(parsedData);
+  try {
+    // Fetch data from the public API
+    const response = await axios.get('https://restcountries.com/v3.1/all');
 
-      res.json(parsedData);// Send the API response back to the client
-    })
-    .catch(error => {
-      console.error(error);
-      res.status(500).json({ error: 'An error occurred' });
-    });
-} else {
-// Handle the case where the parameters are provided
-    // Add your logic here to filter the data based on the provided parameters
-    // Make the appropriate API request and send the filtered data back to the client
-}
+    //let filteredData = JSON.parse(JSON.stringify(response.data)); // Initialize filteredData with the original response
+	let filteredData = response.data;
+
+   
+    // Check if FCName parameter is present and call the filter_by_cName function if necessary
+    if (FCName) {
+       filteredData = filterCNameData(filteredData, FCName);
+    }
+
+    res.json(filteredData);
+  } catch (error) {
+    console.error('Error:', error.message);
+    res.status(500).send('An error occurred while retrieving the data.');
+  }
 });
 
+// Start the server
 app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
