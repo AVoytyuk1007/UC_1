@@ -7,3 +7,4 @@
 # UC#4 Create filter function by name - done. Takes about 1 hour with rewriting Main endpoint functionality.
 # UC#5 Create filter by population function - start
 # UC#5 Create filter by population function - done
+# UC#6 Create sort function by name - done + removed code smells
