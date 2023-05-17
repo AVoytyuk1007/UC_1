@@ -9,6 +9,7 @@ const { paginationData } = require('./pagination'); // Importing the pagination 
 const app = express();
 const port = 3000;
 
+app.disable('x-powered-by');
 // Endpoint that accepts four parameters
 app.get('/api/data', async (req, res) => {
   const { FCName, CPopulation, SCName, Pagination } = req.query;
