@@ -5,4 +5,5 @@
 # UC#3 Create endpoint - done
 # UC#4 Create filter function by name
 # UC#4 Create filter function by name - done. Takes about 1 hour with rewriting Main endpoint functionality.
-# UC#4 Create filter by population function - start
+# UC#5 Create filter by population function - start
+# UC#5 Create filter by population function - done

@@ -1,6 +1,8 @@
 const express = require('express');
 const axios = require('axios');
+
 const { filterCNameData } = require('./filter_by_cName'); // Importing the filter function from a separate file
+const { filterCPopulationData } = require('./filter_by_cPopulation'); // Importing the filter function from a separate file
 
 const app = express();
 const port = 3000;
@@ -20,6 +22,11 @@ app.get('/api/data', async (req, res) => {
     // Check if FCName parameter is present and call the filter_by_cName function if necessary
     if (FCName) {
        filteredData = filterCNameData(filteredData, FCName);
+    }
+	 
+	 // Check if CPopulation parameter is present and call the filter_by_cName function if necessary
+    if (CPopulation) {
+       filteredData = filterCPopulationData(filteredData, CPopulation);
     }
 
     res.json(filteredData);
