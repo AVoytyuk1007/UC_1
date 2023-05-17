@@ -8,3 +8,4 @@
 # UC#5 Create filter by population function - start
 # UC#5 Create filter by population function - done
 # UC#6 Create sort function by name - done + removed code smells
+# UC#7-8 Create pagination function - done + final integration into endpoint
