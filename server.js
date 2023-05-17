@@ -4,6 +4,7 @@ const axios = require('axios');
 const { filterCNameData } = require('./filter_by_cName'); // Importing the filter function from a separate file
 const { filterCPopulationData } = require('./filter_by_cPopulation'); // Importing the filter function from a separate file
 const { sortCNameData } = require('./sort_by_cName'); // Importing the sorting function from a separate file
+const { paginationData } = require('./pagination'); // Importing the pagination function from a separate file
 
 const app = express();
 const port = 3000;
@@ -32,6 +33,10 @@ app.get('/api/data', async (req, res) => {
 	 // Check if SCName parameter is present and call the sort_by_cName function if necessary
     if (SCName) {
        filteredData = sortCNameData(filteredData, SCName);
+    }
+	
+	if (Pagination) {
+       filteredData = paginationData(filteredData, Pagination);
     }
 
     res.json(filteredData);
